@@ -7,9 +7,11 @@ import {
   incrementByAmount,
   incrementAsync,
   incrementIfOdd,
-  selectCount,
 } from './counterSlice';
 import styles from './Counter.module.css';
+import { ActionCreators } from 'redux-undo';
+import { random } from '../color/ColorSlice';
+import { selectCount } from '../../app/store';
 
 export function Counter() {
   const count = useAppSelector(selectCount);
@@ -38,6 +40,23 @@ export function Counter() {
         </button>
       </div>
       <div className={styles.row}>
+
+        <button
+          className={styles.button}
+          aria-label="Increment value"
+          onClick={() => dispatch(ActionCreators.redo())}
+        >
+         Foreward 
+        </button>
+        <button
+          className={styles.button}
+          aria-label="Increment value"
+          onClick={() => dispatch(ActionCreators.undo())}
+        >
+         Back 
+        </button>
+      </div>
+      <div className={styles.row}>
         <input
           className={styles.textbox}
           aria-label="Set increment amount"
@@ -61,6 +80,12 @@ export function Counter() {
           onClick={() => dispatch(incrementIfOdd(incrementValue))}
         >
           Add If Odd
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => dispatch({...random(), wouldLikeToBeInHistory: true})}
+        >
+          Color Random
         </button>
       </div>
     </div>

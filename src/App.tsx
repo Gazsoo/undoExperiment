@@ -2,19 +2,25 @@ import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import {useAppSelector } from './app/hooks';
+import { selectColor } from './app/store';
 
 function App() {
+  const color2 = useAppSelector(selectColor)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div style={{color: color2}} className="App">
+      <header  className="App-header">
+        <img src={logo} className="App-logo" alt="color" />
         <Counter />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Edit <code>src/App.tsx</code> and save to reload.{color2}
         </p>
         <span>
-          <span>Learn </span>
+          <span>Learn</span>
           <a
+            
             className="App-link"
             href="https://reactjs.org/"
             target="_blank"
