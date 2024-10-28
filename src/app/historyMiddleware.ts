@@ -1,6 +1,5 @@
 import { AnyAction, Middleware } from '@reduxjs/toolkit';
 import { undo, redo } from './history';
-import { AppThunk, RootState } from './store';
 import { incrementAsync, incrementIfOdd } from '../features/counter/counterSlice';
 
 type AcceptedAction = AnyAction ;
